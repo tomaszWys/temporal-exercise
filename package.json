@@ -26,11 +26,13 @@
     "@temporalio/client": "^1.11.3",
     "@temporalio/worker": "^1.11.3",
     "@temporalio/workflow": "^1.11.3",
+    "axios": "^1.7.7",
     "nanoid": "3.x"
   },
   "devDependencies": {
     "@temporalio/testing": "^1.11.3",
     "@tsconfig/node18": "^1.0.0",
+    "@types/axios": "^0.9.36",
     "@types/mocha": "8.x",
     "@types/node": "^16.11.43",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
