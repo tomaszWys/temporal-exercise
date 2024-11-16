@@ -60,13 +60,13 @@ describe('fetchAllPeopleWorkflow workflow', () => {
       activities,
     });
 
-    const result = await worker.runUntil(
+    const results = await worker.runUntil(
       client.workflow.execute(fetchAllPeopleWorkflow, {
         args: [],
         workflowId: 'test',
         taskQueue,
       })
     );
-    assert.ok(result.count > 0);
+    assert.ok(results.length > 0);
   });
 });

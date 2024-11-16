@@ -6,7 +6,7 @@ export interface swapiPeopleResponse {
   results: swapiPerson[];
 }
 
-interface swapiPerson {
+export interface swapiPerson {
   name: string;
   height: string;
 }

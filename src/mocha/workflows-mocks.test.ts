@@ -115,17 +115,17 @@ describe('fetchAllPeopleWorkflow workflow with mocks', () => {
       taskQueue,
       workflowsPath: require.resolve('../workflows'),
       activities: {
-        fetchAllPeople: async () => mockedPeopleResponse,
+        fetchAllPeople: async () => mockedPeopleResponse.results,
       },
     });
 
-    const result = await worker.runUntil(
+    const results = await worker.runUntil(
       client.workflow.execute(fetchAllPeopleWorkflow, {
         args: [],
         workflowId: 'test',
         taskQueue,
       })
     );
-    assert.ok(result.count > 0);
+    assert.ok(results.length > 0);
   });
 });
