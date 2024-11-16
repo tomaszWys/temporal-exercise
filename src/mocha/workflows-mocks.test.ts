@@ -1,8 +1,9 @@
 import { TestWorkflowEnvironment } from '@temporalio/testing';
 import { after, before, it } from 'mocha';
 import { Worker } from '@temporalio/worker';
-import { example, fetchAllPeopleWorkflow } from '../workflows';
+import { example, fetchPeopleWorkflow } from '../workflows';
 import assert from 'assert';
+import { OPERATOR } from '../domain/rule.interface';
 
 describe('Example workflow with mocks', () => {
   let testEnv: TestWorkflowEnvironment;
@@ -95,7 +96,7 @@ const mockedPeopleResponse = {
   ],
 };
 
-describe('fetchAllPeopleWorkflow workflow with mocks', () => {
+describe('fetchPeopleWorkflow workflow with mocks', () => {
   let testEnv: TestWorkflowEnvironment;
 
   before(async () => {
@@ -115,13 +116,40 @@ describe('fetchAllPeopleWorkflow workflow with mocks', () => {
       taskQueue,
       workflowsPath: require.resolve('../workflows'),
       activities: {
-        fetchAllPeople: async () => mockedPeopleResponse.results,
+        fetchPeople: async () => mockedPeopleResponse.results,
       },
     });
 
     const results = await worker.runUntil(
-      client.workflow.execute(fetchAllPeopleWorkflow, {
+      client.workflow.execute(fetchPeopleWorkflow, {
         args: [],
+        workflowId: 'test',
+        taskQueue,
+      })
+    );
+    assert.ok(results.length > 0);
+  });
+
+  it('returns people filtered with rule', async () => {
+    const { client, nativeConnection } = testEnv;
+    const taskQueue = 'test';
+
+    const worker = await Worker.create({
+      connection: nativeConnection,
+      taskQueue,
+      workflowsPath: require.resolve('../workflows'),
+      activities: {
+        fetchPeople: async () => mockedPeopleResponse.results,
+      },
+    });
+
+    const results = await worker.runUntil(
+      client.workflow.execute(fetchPeopleWorkflow, {
+        args: [[{
+          propertyName: "name",
+          operator: OPERATOR.REGEX,
+          value: "\\d"
+        }]],
         workflowId: 'test',
         taskQueue,
       })

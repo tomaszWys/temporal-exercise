@@ -1,7 +1,7 @@
 import { TestWorkflowEnvironment } from '@temporalio/testing';
 import { before, describe, it } from 'mocha';
 import { Worker } from '@temporalio/worker';
-import { example, fetchAllPeopleWorkflow } from '../workflows';
+import { example, fetchPeopleWorkflow } from '../workflows';
 import * as activities from '../activities';
 import assert from 'assert';
 
@@ -38,7 +38,7 @@ describe('Example workflow', () => {
   });
 });
 
-describe('fetchAllPeopleWorkflow workflow', () => {
+describe('fetchPeopleWorkflow workflow', () => {
   let testEnv: TestWorkflowEnvironment;
 
   before(async () => {
@@ -49,7 +49,7 @@ describe('fetchAllPeopleWorkflow workflow', () => {
     await testEnv?.teardown();
   });
 
-  it('successfully completes the Workflow', async () => {
+  it('successfully completes the Workflow when no rules passed', async () => {
     const { client, nativeConnection } = testEnv;
     const taskQueue = 'test';
 
@@ -61,7 +61,7 @@ describe('fetchAllPeopleWorkflow workflow', () => {
     });
 
     const results = await worker.runUntil(
-      client.workflow.execute(fetchAllPeopleWorkflow, {
+      client.workflow.execute(fetchPeopleWorkflow, {
         args: [],
         workflowId: 'test',
         taskQueue,

@@ -13,10 +13,10 @@ describe('greet activity', async () => {
   });
 });
 
-describe('fetchAllPeople activity', async () => {
+describe('fetchPeople activity', async () => {
   it('successfully fetch all people', async () => {
     const env = new MockActivityEnvironment();
-    const results = (await env.run(activities.fetchAllPeople)) as unknown as swapiPerson[];
+    const results = (await env.run(activities.fetchPeople)) as unknown as swapiPerson[];
     assert.ok(results.length > 0);
   });
 });

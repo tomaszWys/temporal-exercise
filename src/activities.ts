@@ -4,7 +4,7 @@ export async function greet(name: string): Promise<string> {
   return `Hello, ${name}!`;
 }
 
-export async function fetchAllPeople() {
+export async function fetchPeople() {
   const peopleService = new PeopleService();
-  return await peopleService.fetchAllPeople();
+  return await peopleService.fetchPeople();
 }
