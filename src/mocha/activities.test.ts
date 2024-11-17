@@ -2,7 +2,7 @@ import { MockActivityEnvironment } from '@temporalio/testing';
 import { describe, it } from 'mocha';
 import * as activities from '../activities';
 import assert from 'assert';
-import { swapiPerson } from '../domain/people.interface';
+import { SwapiPerson } from '../domain/people.interface';
 
 describe('greet activity', async () => {
   it('successfully greets the user', async () => {
@@ -16,7 +16,7 @@ describe('greet activity', async () => {
 describe('fetchPeople activity', async () => {
   it('successfully fetch all people', async () => {
     const env = new MockActivityEnvironment();
-    const results = (await env.run(activities.fetchPeople)) as unknown as swapiPerson[];
+    const results = (await env.run(activities.fetchPeople)) as unknown as SwapiPerson[];
     assert.ok(results.length > 0);
   });
 });

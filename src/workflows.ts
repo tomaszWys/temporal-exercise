@@ -1,7 +1,7 @@
 import { proxyActivities } from '@temporalio/workflow';
 // Only import the activity types
 import type * as activities from './activities';
-import { rule } from './domain/rule.interface';
+import { Rule } from './domain/rule.interface';
 import { filterData } from './common/filter-data.helper';
 
 const { greet, fetchPeople } = proxyActivities<typeof activities>({
@@ -13,7 +13,7 @@ export async function example(name: string): Promise<string> {
   return await greet(name);
 }
 
-export async function fetchPeopleWorkflow(rules?: rule[]) {
+export async function fetchPeopleWorkflow(rules?: Rule[]) {
   const people = await fetchPeople();
   return filterData(people, rules);
 }

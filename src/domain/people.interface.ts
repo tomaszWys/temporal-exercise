@@ -1,11 +1,11 @@
-export type swapiPeopleResponse = {
+export type SwapiPeopleResponse = {
   count: number;
   next: string | null;
   previous: string | null;
-  results: swapiPerson[];
+  results: SwapiPerson[];
 };
 
-export type swapiPerson = {
+export type SwapiPerson = {
   name: string;
   height: string;
   mass: string;

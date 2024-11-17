@@ -1,6 +1,6 @@
-import { OPERATOR, rule } from '../domain/rule.interface';
+import { OPERATOR, Rule } from '../domain/rule.interface';
 
-export const filterData = (data: Record<string, unknown>[], rules: rule[] = []) => {
+export const filterData = (data: Record<string, unknown>[], rules: Rule[] = []) => {
   // to verify if shallow copy is ok
   let filteredData = [...data];
   for (const rule of rules) {

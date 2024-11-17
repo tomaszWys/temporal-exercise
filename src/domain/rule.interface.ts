@@ -3,7 +3,7 @@ export enum OPERATOR {
   EQUAL = 'EQUAL',
 }
 
-export interface rule {
+export interface Rule {
   propertyName: string;
   operator: OPERATOR;
   value: string;
