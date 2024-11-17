@@ -20,17 +20,20 @@ async function run() {
   const handle = await client.workflow.start(fetchPeopleWorkflow, {
     taskQueue: 'hello-world',
     // type inference works! args: [name: string]
-    args: [[{
-      propertyName: "name",
-      operator: OPERATOR.REGEX,
-      value: "\\d"
-    },
-    {
-      propertyName: "eye_color",
-      operator: OPERATOR.EQUAL,
-      value: "red"
-    }
-    ]],
+    args: [
+      [
+        {
+          propertyName: 'name',
+          operator: OPERATOR.REGEX,
+          value: '\\d',
+        },
+        {
+          propertyName: 'eye_color',
+          operator: OPERATOR.EQUAL,
+          value: 'red',
+        },
+      ],
+    ],
     // in practice, use a meaningful business ID, like customerId or transactionId
     workflowId: 'workflow-' + nanoid(),
   });

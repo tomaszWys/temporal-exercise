@@ -1,5 +1,5 @@
 import * as axios from 'axios';
-import { swapiPeopleResponse, swapiPerson } from './domain/people.interface';
+import { swapiPeopleResponse, swapiPerson } from '../domain/people.interface';
 
 //TODO: use env file with config
 export class PeopleService {

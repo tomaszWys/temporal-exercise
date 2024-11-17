@@ -2,7 +2,7 @@ import { proxyActivities } from '@temporalio/workflow';
 // Only import the activity types
 import type * as activities from './activities';
 import { rule } from './domain/rule.interface';
-import { filterData } from './filter-data.helper';
+import { filterData } from './common/filter-data.helper';
 
 const { greet, fetchPeople } = proxyActivities<typeof activities>({
   startToCloseTimeout: '1 minute',
@@ -15,5 +15,5 @@ export async function example(name: string): Promise<string> {
 
 export async function fetchPeopleWorkflow(rules?: rule[]) {
   const people = await fetchPeople();
-  return filterData(people, rules)
+  return filterData(people, rules);
 }

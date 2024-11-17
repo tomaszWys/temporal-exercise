@@ -1,4 +1,4 @@
-import { PeopleService } from './people.service';
+import { PeopleService } from './services/people.service';
 
 export async function greet(name: string): Promise<string> {
   return `Hello, ${name}!`;

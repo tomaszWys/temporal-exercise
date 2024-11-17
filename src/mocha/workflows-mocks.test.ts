@@ -145,11 +145,15 @@ describe('fetchPeopleWorkflow workflow with mocks', () => {
 
     const results = await worker.runUntil(
       client.workflow.execute(fetchPeopleWorkflow, {
-        args: [[{
-          propertyName: "name",
-          operator: OPERATOR.REGEX,
-          value: "\\d"
-        }]],
+        args: [
+          [
+            {
+              propertyName: 'name',
+              operator: OPERATOR.REGEX,
+              value: '\\d',
+            },
+          ],
+        ],
         workflowId: 'test',
         taskQueue,
       })

@@ -1,10 +1,10 @@
 export enum OPERATOR {
-    REGEX = 'REGEX',
-    EQUAL = 'EQUAL'
+  REGEX = 'REGEX',
+  EQUAL = 'EQUAL',
 }
 
 export interface rule {
-    propertyName: string;
-    operator: OPERATOR;
-    value: string;
+  propertyName: string;
+  operator: OPERATOR;
+  value: string;
 }
